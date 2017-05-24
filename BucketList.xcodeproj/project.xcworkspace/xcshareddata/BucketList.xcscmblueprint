@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D2393D8CEF091F696D4F1FBDE8BC6D7B241CFDA0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "A57C6E3DBCE0608B15B7E55798B1BA6C9A0A395A" : 9223372036854775807,
+    "D2393D8CEF091F696D4F1FBDE8BC6D7B241CFDA0" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "DBE9CD30-A007-44C0-B027-2C668C4FF8A3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "A57C6E3DBCE0608B15B7E55798B1BA6C9A0A395A" : "",
+    "D2393D8CEF091F696D4F1FBDE8BC6D7B241CFDA0" : "BucketList\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "BucketList",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "BucketList.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/tgraninger\/vol_test.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A57C6E3DBCE0608B15B7E55798B1BA6C9A0A395A"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/tgraninger\/Bucket-List.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D2393D8CEF091F696D4F1FBDE8BC6D7B241CFDA0"
+    }
+  ]
+}

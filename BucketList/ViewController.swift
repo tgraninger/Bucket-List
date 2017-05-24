@@ -7,46 +7,45 @@
 //
 
 import UIKit
+import ReSwift
+import ReSwiftRouter
 
-class CategoryCell: UITableViewCell {
-	@IBOutlet weak var title: UILabel!
-}
-
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, StoreSubscriber, UITableViewDelegate, UITableViewDataSource {
 	
-	@IBOutlet weak var backgroundImage: UIImageView!
 	@IBOutlet weak var tableView: UITableView!
-	@IBOutlet weak var imageFilterView: UIView!
 	
-	let dh = DataHandler.sharedInstance
-	var categories = [CategoryMO]()
+//	var theStore = store
+	
+	var categories = [Category]()
 	var imgs = [UIImage]()
-
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		DispatchQueue.main.async {
-			// Lets do this on the main thread...
-			self.imgs = self.dh.selectRandomImages()
-			self.backgroundImage.image = self.imgs[0]
-		}
-		
-		self.dh.getCategories()
-		self.tableView.backgroundColor = UIColor.clear
+		self.automaticallyAdjustsScrollViewInsets = false
 		self.tableView.tableFooterView = UIView(frame: .zero)
-		self.tableView.reloadData()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
-		self.categories = dh.categories
-		self.tableView.reloadData()
+		
+		store.subscribe(self) { state in
+			state.categoriesState
+		}
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(true)
+		
+		store.unsubscribe(self)
+	}
+	
+	func newState(state: CategoriesState) {
+		categories = state.categories
+		tableView.reloadData()
 	}
 	
 	// MARK: Table view data source
-	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 60
-	}
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
@@ -57,44 +56,35 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath) as! CategoryCell
+		let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
+		
 		let c = categories[indexPath.row]
-		cell.title?.text = c.categoryName
-		cell.title?.textColor = UIColor.white
-		cell.backgroundColor = UIColor.clear
-		cell.selectionStyle = .none
+		cell.textLabel?.text = c.name
+
 		return cell
 	}
 	
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 		if editingStyle == .delete {
-			categories.remove(at: indexPath.row)
-//			self.dh.deleteCat
-			tableView.deleteRows(at: [indexPath], with: .fade)
+			store.dispatch(RemoveCategory(routeSpecificData: categories[indexPath.row]))
 		}
 	}
 	
 	// MARK: Navigation
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		self.performSegue(withIdentifier: "showAdventures", sender: self)
+		let selectedCategory = categories[indexPath.row]
+		let route = [categoriesViewRoute, listItemsViewRoute]
+		let setRoute = ReSwiftRouter.SetRouteAction(route)
+		let data = ReSwiftRouter.SetRouteSpecificData(route: route, data: selectedCategory)
+		
+		store.dispatch(SelectCategory(routeSpecificData: selectedCategory))
+		store.dispatch(data)
+		store.dispatch(setRoute)
 	}
 	
 	@IBAction func addCategory(_ sender: Any) {
-		self.performSegue(withIdentifier: "addCategory", sender: self)
-	}
-	
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		if segue.identifier == "showAdventures" {
-			if let indexPath = tableView.indexPathForSelectedRow {
-				let vc = segue.destination as! AdventureViewController
-				vc.imgs = [self.imgs[2], self.imgs[3]]
-				vc.category = categories[indexPath.row]
-			}
-		} else if segue.identifier == "addCategory" {
-			let vc = segue.destination as! AddCategoryViewController
-			vc.img = imgs[1]
-		}
+		store.dispatch(ReSwiftRouter.SetRouteAction([categoriesViewRoute, addCategoryViewRoute]))
 	}
 
 	override func didReceiveMemoryWarning() {

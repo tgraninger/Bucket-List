@@ -7,35 +7,90 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE09130A1ED4AA9100163A67 /* CategoriesState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0913091ED4AA9100163A67 /* CategoriesState.swift */; };
 		CE64F4411E4851E5002BAE2F /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64F4401E4851E5002BAE2F /* AddCategoryViewController.swift */; };
 		CE64F4431E4851EF002BAE2F /* AdventureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64F4421E4851EF002BAE2F /* AdventureViewController.swift */; };
-		CE64F4451E4851F6002BAE2F /* AddAdventureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64F4441E4851F6002BAE2F /* AddAdventureViewController.swift */; };
-		CE64F4481E485B25002BAE2F /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64F4471E485B25002BAE2F /* DataHandler.swift */; };
+		CE64F4451E4851F6002BAE2F /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE64F4441E4851F6002BAE2F /* AddItemViewController.swift */; };
 		CE79B5A61E551F030071A142 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79B5A51E551F030071A142 /* MapViewController.swift */; };
 		CE79B5A81E55332B0071A142 /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE79B5A71E55332B0071A142 /* MapAnnotation.swift */; };
 		CE804C951E1C57BB001C5DB7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE804C941E1C57BB001C5DB7 /* AppDelegate.swift */; };
 		CE804C971E1C57BB001C5DB7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE804C961E1C57BB001C5DB7 /* ViewController.swift */; };
 		CE804C9A1E1C57BB001C5DB7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE804C981E1C57BB001C5DB7 /* Main.storyboard */; };
-		CE804C9D1E1C57BB001C5DB7 /* BucketList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE804C9B1E1C57BB001C5DB7 /* BucketList.xcdatamodeld */; };
 		CE804C9F1E1C57BB001C5DB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE804C9E1E1C57BB001C5DB7 /* Assets.xcassets */; };
 		CE804CA21E1C57BB001C5DB7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE804CA01E1C57BB001C5DB7 /* LaunchScreen.storyboard */; };
+		CE81C5F11ECFB0C000C559DB /* AddImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE81C5F01ECFB0C000C559DB /* AddImageViewController.swift */; };
+		CE81C5F31ED2447200C559DB /* CollectionViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE81C5F21ED2447200C559DB /* CollectionViewCells.swift */; };
+		CE81C6221ED293E900C559DB /* ItemsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE81C6211ED293E900C559DB /* ItemsReducer.swift */; };
+		CE81C6521ED39A5F00C559DB /* NewItemState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE81C6511ED39A5F00C559DB /* NewItemState.swift */; };
+		CEBC6ACB1ED4BB4C00622A15 /* AppReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBC6ACA1ED4BB4C00622A15 /* AppReducer.swift */; };
+		CEDD632D1ECDD7C3000D95D1 /* ReSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDD632C1ECDD7C3000D95D1 /* ReSwift.framework */; };
+		CEDD63331ECDD83A000D95D1 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD63321ECDD83A000D95D1 /* AppState.swift */; };
+		CEDD63351ECDD8B8000D95D1 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD63341ECDD8B8000D95D1 /* Actions.swift */; };
+		CEDD63391ECDD91A000D95D1 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD63381ECDD91A000D95D1 /* Routes.swift */; };
+		CEDD633E1ECDDEF2000D95D1 /* CategoriesReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD633D1ECDDEF2000D95D1 /* CategoriesReducer.swift */; };
+		CEDD63421ECDE6E8000D95D1 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDD63411ECDE6E8000D95D1 /* RealmSwift.framework */; };
+		CEDD63441ECDF1DA000D95D1 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD63431ECDF1DA000D95D1 /* Models.swift */; };
+		CEDD63461ECE0DE0000D95D1 /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CEDD63411ECDE6E8000D95D1 /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CEDD63471ECE0DE0000D95D1 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDD633F1ECDE6E3000D95D1 /* Realm.framework */; };
+		CEDD63481ECE0DE0000D95D1 /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CEDD633F1ECDE6E3000D95D1 /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CEDD63491ECE0DE0000D95D1 /* ReSwiftRouter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEDD632E1ECDD7CB000D95D1 /* ReSwiftRouter.framework */; };
+		CEDD634A1ECE0DE0000D95D1 /* ReSwiftRouter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CEDD632E1ECDD7CB000D95D1 /* ReSwiftRouter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CEDD634C1ECE0DE0000D95D1 /* ReSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CEDD632C1ECDD7C3000D95D1 /* ReSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		CEDD634F1ECE2B5A000D95D1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD634E1ECE2B5A000D95D1 /* Extensions.swift */; };
+		CEDD63511ECF8327000D95D1 /* AddItemReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD63501ECF8327000D95D1 /* AddItemReducer.swift */; };
+		CEDD63531ECF870F000D95D1 /* LocationSearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD63521ECF870F000D95D1 /* LocationSearchClient.swift */; };
+		CEDD63551ECF8F5B000D95D1 /* ImageSearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDD63541ECF8F5B000D95D1 /* ImageSearchClient.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		CEDD634D1ECE0DE0000D95D1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CEDD634A1ECE0DE0000D95D1 /* ReSwiftRouter.framework in Embed Frameworks */,
+				CEDD634C1ECE0DE0000D95D1 /* ReSwift.framework in Embed Frameworks */,
+				CEDD63481ECE0DE0000D95D1 /* Realm.framework in Embed Frameworks */,
+				CEDD63461ECE0DE0000D95D1 /* RealmSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		CE0913091ED4AA9100163A67 /* CategoriesState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesState.swift; sourceTree = "<group>"; };
 		CE64F4401E4851E5002BAE2F /* AddCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
 		CE64F4421E4851EF002BAE2F /* AdventureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdventureViewController.swift; sourceTree = "<group>"; };
-		CE64F4441E4851F6002BAE2F /* AddAdventureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddAdventureViewController.swift; sourceTree = "<group>"; };
-		CE64F4471E485B25002BAE2F /* DataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHandler.swift; sourceTree = "<group>"; };
+		CE64F4441E4851F6002BAE2F /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		CE79B5A51E551F030071A142 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		CE79B5A71E55332B0071A142 /* MapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
+		CE79B5A71E55332B0071A142 /* MapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapAnnotation.swift; path = BucketList/MapAnnotation.swift; sourceTree = "<group>"; };
 		CE804C911E1C57BB001C5DB7 /* BucketList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BucketList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE804C941E1C57BB001C5DB7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = BucketList/AppDelegate.swift; sourceTree = "<group>"; };
 		CE804C961E1C57BB001C5DB7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CE804C991E1C57BB001C5DB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		CE804C9C1E1C57BB001C5DB7 /* BucketList.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BucketList.xcdatamodel; sourceTree = "<group>"; };
 		CE804C9E1E1C57BB001C5DB7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE804CA11E1C57BB001C5DB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE804CA31E1C57BB001C5DB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE81C5F01ECFB0C000C559DB /* AddImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddImageViewController.swift; path = ../AddImageViewController.swift; sourceTree = "<group>"; };
+		CE81C5F21ED2447200C559DB /* CollectionViewCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCells.swift; sourceTree = "<group>"; };
+		CE81C6211ED293E900C559DB /* ItemsReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemsReducer.swift; sourceTree = "<group>"; };
+		CE81C6511ED39A5F00C559DB /* NewItemState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewItemState.swift; sourceTree = "<group>"; };
+		CEBC6ACA1ED4BB4C00622A15 /* AppReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppReducer.swift; sourceTree = "<group>"; };
+		CEDD632C1ECDD7C3000D95D1 /* ReSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReSwift.framework; sourceTree = "<group>"; };
+		CEDD632E1ECDD7CB000D95D1 /* ReSwiftRouter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReSwiftRouter.framework; sourceTree = "<group>"; };
+		CEDD63321ECDD83A000D95D1 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		CEDD63341ECDD8B8000D95D1 /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
+		CEDD63381ECDD91A000D95D1 /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
+		CEDD633D1ECDDEF2000D95D1 /* CategoriesReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesReducer.swift; sourceTree = "<group>"; };
+		CEDD633F1ECDE6E3000D95D1 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		CEDD63411ECDE6E8000D95D1 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
+		CEDD63431ECDF1DA000D95D1 /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		CEDD634E1ECE2B5A000D95D1 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		CEDD63501ECF8327000D95D1 /* AddItemReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemReducer.swift; sourceTree = "<group>"; };
+		CEDD63521ECF870F000D95D1 /* LocationSearchClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchClient.swift; sourceTree = "<group>"; };
+		CEDD63541ECF8F5B000D95D1 /* ImageSearchClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSearchClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +98,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEDD63491ECE0DE0000D95D1 /* ReSwiftRouter.framework in Frameworks */,
+				CEDD63471ECE0DE0000D95D1 /* Realm.framework in Frameworks */,
+				CEDD63421ECDE6E8000D95D1 /* RealmSwift.framework in Frameworks */,
+				CEDD632D1ECDD7C3000D95D1 /* ReSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,7 +113,6 @@
 			children = (
 				CE804C9E1E1C57BB001C5DB7 /* Assets.xcassets */,
 				CE804CA31E1C57BB001C5DB7 /* Info.plist */,
-				CE804C9B1E1C57BB001C5DB7 /* BucketList.xcdatamodeld */,
 			);
 			name = "Supporting Files";
 			path = BucketList;
@@ -63,13 +121,22 @@
 		CE804C881E1C57BB001C5DB7 = {
 			isa = PBXGroup;
 			children = (
-				CE804CA01E1C57BB001C5DB7 /* LaunchScreen.storyboard */,
-				CE804C981E1C57BB001C5DB7 /* Main.storyboard */,
-				CE64F4471E485B25002BAE2F /* DataHandler.swift */,
 				CE804C941E1C57BB001C5DB7 /* AppDelegate.swift */,
-				CE804C931E1C57BB001C5DB7 /* BucketList */,
+				CE81C5F21ED2447200C559DB /* CollectionViewCells.swift */,
+				CEDD63541ECF8F5B000D95D1 /* ImageSearchClient.swift */,
+				CEDD63521ECF870F000D95D1 /* LocationSearchClient.swift */,
+				CEDD634E1ECE2B5A000D95D1 /* Extensions.swift */,
+				CEDD63431ECDF1DA000D95D1 /* Models.swift */,
+				CE79B5A71E55332B0071A142 /* MapAnnotation.swift */,
+				CEDD633B1ECDDC52000D95D1 /* Actions */,
+				CEDD633C1ECDDC5E000D95D1 /* Navigation */,
+				CEDD633A1ECDDC46000D95D1 /* Reducers */,
+				CEDD63311ECDD82A000D95D1 /* AppState */,
+				CE81C6231ED2A09100C559DB /* Storyboards */,
+				CE804C931E1C57BB001C5DB7 /* View Controllers */,
 				CE64F4461E485210002BAE2F /* Supporting Files */,
 				CE804C921E1C57BB001C5DB7 /* Products */,
+				CEDD63301ECDD7D0000D95D1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,17 +148,75 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CE804C931E1C57BB001C5DB7 /* BucketList */ = {
+		CE804C931E1C57BB001C5DB7 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				CE804C961E1C57BB001C5DB7 /* ViewController.swift */,
 				CE64F4401E4851E5002BAE2F /* AddCategoryViewController.swift */,
 				CE64F4421E4851EF002BAE2F /* AdventureViewController.swift */,
-				CE64F4441E4851F6002BAE2F /* AddAdventureViewController.swift */,
+				CE64F4441E4851F6002BAE2F /* AddItemViewController.swift */,
+				CE81C5F01ECFB0C000C559DB /* AddImageViewController.swift */,
 				CE79B5A51E551F030071A142 /* MapViewController.swift */,
-				CE79B5A71E55332B0071A142 /* MapAnnotation.swift */,
 			);
+			name = "View Controllers";
 			path = BucketList;
+			sourceTree = "<group>";
+		};
+		CE81C6231ED2A09100C559DB /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				CE804CA01E1C57BB001C5DB7 /* LaunchScreen.storyboard */,
+				CE804C981E1C57BB001C5DB7 /* Main.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		CEDD63301ECDD7D0000D95D1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CEDD63411ECDE6E8000D95D1 /* RealmSwift.framework */,
+				CEDD633F1ECDE6E3000D95D1 /* Realm.framework */,
+				CEDD632E1ECDD7CB000D95D1 /* ReSwiftRouter.framework */,
+				CEDD632C1ECDD7C3000D95D1 /* ReSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CEDD63311ECDD82A000D95D1 /* AppState */ = {
+			isa = PBXGroup;
+			children = (
+				CEDD63321ECDD83A000D95D1 /* AppState.swift */,
+				CE81C6511ED39A5F00C559DB /* NewItemState.swift */,
+				CE0913091ED4AA9100163A67 /* CategoriesState.swift */,
+			);
+			name = AppState;
+			sourceTree = "<group>";
+		};
+		CEDD633A1ECDDC46000D95D1 /* Reducers */ = {
+			isa = PBXGroup;
+			children = (
+				CEBC6ACA1ED4BB4C00622A15 /* AppReducer.swift */,
+				CEDD633D1ECDDEF2000D95D1 /* CategoriesReducer.swift */,
+				CE81C6211ED293E900C559DB /* ItemsReducer.swift */,
+				CEDD63501ECF8327000D95D1 /* AddItemReducer.swift */,
+			);
+			name = Reducers;
+			sourceTree = "<group>";
+		};
+		CEDD633B1ECDDC52000D95D1 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				CEDD63341ECDD8B8000D95D1 /* Actions.swift */,
+			);
+			name = Actions;
+			sourceTree = "<group>";
+		};
+		CEDD633C1ECDDC5E000D95D1 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				CEDD63381ECDD91A000D95D1 /* Routes.swift */,
+			);
+			name = Navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,6 +229,7 @@
 				CE804C8D1E1C57BB001C5DB7 /* Sources */,
 				CE804C8E1E1C57BB001C5DB7 /* Frameworks */,
 				CE804C8F1E1C57BB001C5DB7 /* Resources */,
+				CEDD634D1ECE0DE0000D95D1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -168,13 +294,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE64F4411E4851E5002BAE2F /* AddCategoryViewController.swift in Sources */,
-				CE64F4481E485B25002BAE2F /* DataHandler.swift in Sources */,
+				CEDD63331ECDD83A000D95D1 /* AppState.swift in Sources */,
+				CEDD63551ECF8F5B000D95D1 /* ImageSearchClient.swift in Sources */,
+				CEDD633E1ECDDEF2000D95D1 /* CategoriesReducer.swift in Sources */,
 				CE79B5A81E55332B0071A142 /* MapAnnotation.swift in Sources */,
+				CEDD63511ECF8327000D95D1 /* AddItemReducer.swift in Sources */,
 				CE804C971E1C57BB001C5DB7 /* ViewController.swift in Sources */,
+				CE81C6521ED39A5F00C559DB /* NewItemState.swift in Sources */,
+				CEDD63351ECDD8B8000D95D1 /* Actions.swift in Sources */,
+				CE81C5F11ECFB0C000C559DB /* AddImageViewController.swift in Sources */,
+				CE81C5F31ED2447200C559DB /* CollectionViewCells.swift in Sources */,
 				CE64F4431E4851EF002BAE2F /* AdventureViewController.swift in Sources */,
-				CE804C9D1E1C57BB001C5DB7 /* BucketList.xcdatamodeld in Sources */,
-				CE64F4451E4851F6002BAE2F /* AddAdventureViewController.swift in Sources */,
+				CEBC6ACB1ED4BB4C00622A15 /* AppReducer.swift in Sources */,
+				CEDD63441ECDF1DA000D95D1 /* Models.swift in Sources */,
+				CEDD63391ECDD91A000D95D1 /* Routes.swift in Sources */,
+				CEDD634F1ECE2B5A000D95D1 /* Extensions.swift in Sources */,
+				CEDD63531ECF870F000D95D1 /* LocationSearchClient.swift in Sources */,
+				CE64F4451E4851F6002BAE2F /* AddItemViewController.swift in Sources */,
 				CE804C951E1C57BB001C5DB7 /* AppDelegate.swift in Sources */,
+				CE09130A1ED4AA9100163A67 /* CategoriesState.swift in Sources */,
+				CE81C6221ED293E900C559DB /* ItemsReducer.swift in Sources */,
 				CE79B5A61E551F030071A142 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,6 +441,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UDW6TT4A9G;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = BucketList/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -317,6 +460,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UDW6TT4A9G;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = BucketList/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -348,19 +495,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		CE804C9B1E1C57BB001C5DB7 /* BucketList.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				CE804C9C1E1C57BB001C5DB7 /* BucketList.xcdatamodel */,
-			);
-			currentVersion = CE804C9C1E1C57BB001C5DB7 /* BucketList.xcdatamodel */;
-			path = BucketList.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = CE804C891E1C57BB001C5DB7 /* Project object */;
 }

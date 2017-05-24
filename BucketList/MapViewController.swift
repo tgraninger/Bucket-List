@@ -9,20 +9,19 @@
 import UIKit
 import CoreLocation
 import MapKit
+import ReSwift
+import ReSwiftRouter
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UISearchBarDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, StoreSubscriber {
 	
-	@IBOutlet weak var searchBar: UISearchBar!
 	@IBOutlet weak var mapView: MKMapView!
-	
-	var adventure: AdventureMO?
-	var searchText: String?
+
 	var locationManager: CLLocationManager!
 	var location: CLLocation!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		
+		/*
 		if searchText != nil {
 			self.searchForText(text: self.searchText!)
 //			self.zoomToLocation(location: <#T##CLLocation#>)
@@ -38,42 +37,24 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 				self.zoomToLocation(location: self.location)
 			}
 		}
+*/
     }
 	
-	// MARK: Location manager delegate
-	
-	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-		if CLLocationManager.locationServicesEnabled() {
-			switch CLLocationManager.authorizationStatus() {
-			case .notDetermined, .restricted, .denied:
-				locationManager.requestWhenInUseAuthorization()
-			default:
-				break
-			}
-		}
-	}
-
-	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-		if locations.first != nil {
-			locationManager.stopUpdatingLocation()
-			self.location = locations.first
+	override func viewWillAppear(_ animated: Bool) {
+		store.subscribe(self) { state in
+			let currentItem: Item! = state.navigationState.getRouteSpecificState(state.navigationState.route)
+			return currentItem
 		}
 	}
 	
-	func zoomToLocation(location: CLLocation) {
-		let spanX = 0.1
-		let spanY = 0.1
-		var region = MKCoordinateRegion()
-		region.center.latitude = location.coordinate.latitude
-		region.center.longitude = location.coordinate.longitude
-		region.span = MKCoordinateSpanMake(spanX, spanY)
-		mapView.setRegion(region, animated: true)
+	override func viewWillDisappear(_ animated: Bool) {
+		store.unsubscribe(self)
 	}
 	
-	// MARK: Search bar delegate
-	
-	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-		self.searchForText(text: searchText)
+	func newState(state: Item?) {
+		if state?.latitude != nil {
+			//addPinToMapView(title: state!.name, lat: state!.latitude, long: state.longitude)
+		}
 	}
 	
 	func searchForText(text: String) {

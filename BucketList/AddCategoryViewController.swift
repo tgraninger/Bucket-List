@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import ReSwift
+import ReSwiftRouter
 
-class AddCategoryViewController: UIViewController, UITextFieldDelegate {
+class AddCategoryViewController: UIViewController, StoreSubscriber, UITextFieldDelegate {
 
 	@IBOutlet weak var bgimg: UIImageView!
 	@IBOutlet weak var tf: UITextField!
@@ -22,13 +24,33 @@ class AddCategoryViewController: UIViewController, UITextFieldDelegate {
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
+		
+		store.subscribe(self)
+		
+	}
+	
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(true)
+		
+		store.unsubscribe(self)
+		
+		//if store.state.navigationState.route == [categoriesViewRoute, addCategoryViewRoute] {
+		//	store.dispatch(SetRouteAction([categoriesViewRoute]))
+		//}
+	}
+	
+	func newState(state: AppState) {
+		
+		
 	}
 	
 	@IBAction func buttonTapped(_ sender: Any) {
 		if tf.text != nil {
-			let dh = DataHandler.sharedInstance
-			dh.storeCategory(name: tf.text!)
-			_ = self.navigationController?.popViewController(animated: true)
+			let category = Category()
+			category.name = tf.text!
+			
+			store.dispatch(AddCategory(routeSpecificData: category))
+			store.dispatch(ReSwiftRouter.SetRouteAction([categoriesViewRoute]))
 		}
 	}
 

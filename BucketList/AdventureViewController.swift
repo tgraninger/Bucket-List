@@ -7,65 +7,111 @@
 //
 
 import UIKit
+import ReSwift
+import ReSwiftRouter
 
-class AdventureCell: UITableViewCell {
-	@IBOutlet weak var label: UILabel!
+class ItemCell: UICollectionViewCell {
+	@IBOutlet weak var imageView: UIImageView!
+	@IBOutlet weak var itemNameLabel: UILabel!
 }
 
-class AdventureViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ItemViewController: UIViewController, StoreSubscriber, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-	@IBOutlet weak var tv: UITableView!
-	@IBOutlet weak var bgimg: UIImageView!
-	@IBOutlet weak var imageFilterView: UIView!
+	@IBOutlet weak var collectionView: UICollectionView!
 	
-	var category: CategoryMO!
-	var adventures = [AdventureMO]()
 	var imgs = [UIImage]()
+	var category: Category!
+	var items: [Item]?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		DispatchQueue.main.async {
-			// Lets do this on the main thread...
-			self.bgimg.image = self.imgs[0]
-		}
-		
-		self.navigationItem.title = category.categoryName
-		self.tv.backgroundColor = UIColor.clear
-		self.tv.tableFooterView = UIView(frame: .zero)
-		self.tv.contentInset = UIEdgeInsetsMake(12, 0, 0, 0)
+		self.navigationItem.rightBarButtonItem = nil
+		let addButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addItem(_ :)))
+		self.navigationItem.rightBarButtonItem = addButton
+		self.automaticallyAdjustsScrollViewInsets = false
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(true)
 		
-		adventures = category.adventures?.allObjects as! [AdventureMO]
-		self.tv.reloadData()
+		store.subscribe(self) { state in
+			let currentCategory: Category! = state.navigationState.getRouteSpecificState(state.navigationState.route)
+			return (currentCategory, state.items)
+		}
+		
+		self.navigationItem.title = category.name
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(true)
-		if isMovingFromParentViewController {
-			self.imageFilterView.removeFromSuperview()
+		
+		store.unsubscribe(self)
+		
+		if store.state.navigationState.route == [categoriesViewRoute, listItemsViewRoute] {
+			store.dispatch(SetRouteAction([categoriesViewRoute]))
 		}
 	}
 	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return adventures.count
+	func newState(state: (category: Category?, items: [Item]?)) {
+		category = state.category
+		items = state.items
+		
+		collectionView.reloadData()
 	}
 	
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tv.dequeueReusableCell(withIdentifier: "AdventureCell", for: indexPath) as! AdventureCell
-		let a = adventures[indexPath.row]
-		cell.label?.text = a.adventureName
-		cell.label?.textColor = UIColor.white
-		cell.backgroundColor = UIColor.clear
-		cell.selectionStyle = .none
+	// MARK - Collection View Data Source
+	
+	func numberOfSections(in collectionView: UICollectionView) -> Int {
+		return 1
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return items != nil ? items!.count : 0
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ItemCell", for: indexPath) as! ItemCell
+		let item: Item! = items?[indexPath.row]
+		
+		cell.itemNameLabel?.text = item.name
+		cell.imageView?.image = UIImage(named: "placeholder")
+		
+		if item.img != nil {
+			cell.imageView?.imageFromUrl(urlString: (item.img)!)
+		}
+		
 		return cell
 	}
 	
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		self.performSegue(withIdentifier: "addAdventure", sender: self)
+	// MARK - Collection View Delegate
+	
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		// Push Map View...
+	}
+	
+	// MARK - Collection View Flow Layout
+	
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		return CGSize(width: (collectionView.bounds.width - 20) / 2, height: collectionView.bounds.height / 6)
+	}
+	
+	// MARK - Actions
+
+	func delete() {
+		//if editingStyle == .delete {
+		//let itemToDelete = items?[indexPath.row]
+		//store.dispatch(RemoveItem(category: category, item: itemToDelete))
+	}
+
+	func addItem(_ sender: UIBarButtonItem) {
+		let route = store.state.navigationState.route + [addItemViewRoute]
+		
+		let setRoute = ReSwiftRouter.SetRouteAction(route)
+		let setData = ReSwiftRouter.SetRouteSpecificData(route: route, data: category)
+		
+		store.dispatch(setData)
+		store.dispatch(setRoute)
 	}
 
     override func didReceiveMemoryWarning() {
@@ -73,15 +119,4 @@ class AdventureViewController: UIViewController, UITableViewDelegate, UITableVie
     }
 
     // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		let vc = segue.destination as! AddAdventureViewController
-		vc.category = category
-		vc.img = self.imgs[1]
-		
-		if (sender is UIBarButtonItem) == false {
-			let indexPath = self.tv.indexPathForSelectedRow
-			vc.adventure = self.adventures[(indexPath?.row)!]
-		}
-    }
 }
