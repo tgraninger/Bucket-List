@@ -14,7 +14,7 @@ class AddImageViewController: UIViewController, StoreSubscriber, UICollectionVie
 
 	@IBOutlet weak var collectionView: UICollectionView!
 	
-	var item: Item!
+	//var item: Item!
 	var dataStore: [String]?
 	
     override func viewDidLoad() {
@@ -25,8 +25,8 @@ class AddImageViewController: UIViewController, StoreSubscriber, UICollectionVie
 	
 	override func viewWillAppear(_ animated: Bool) {
 		store.subscribe(self) { state in
-			let item: Item! = state.navigationState.getRouteSpecificState(state.navigationState.route)
-			return item
+			let newItemState: NewItemState! = state.navigationState.getRouteSpecificState(state.navigationState.route)
+			return newItemState
 		}
 	}
 	
@@ -38,12 +38,11 @@ class AddImageViewController: UIViewController, StoreSubscriber, UICollectionVie
 		}
 	}
 	
-	func newState(state: Item) {
-		//store.dispatch(fetchImagesForItem(item.name))
-
-		//item = state.item
-		//dataStore = state.images
-		collectionView.reloadData()
+	func newState(state: NewItemState) {
+		if state.images != nil {
+			dataStore = state.images
+			collectionView.reloadData()
+		}
 	}
 	
 	// MARK - Collection View Data Source
@@ -69,7 +68,7 @@ class AddImageViewController: UIViewController, StoreSubscriber, UICollectionVie
 	// MARK - Collection View Delegate
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		store.dispatch(SetImage(item: item, routeSpecificData: dataStore?[indexPath.row]))
+		store.dispatch(SetImage(selectedImage: dataStore?[indexPath.row]))
 		
 		let route = [categoriesViewRoute, listItemsViewRoute, addItemViewRoute]
 		store.dispatch(ReSwiftRouter.SetRouteAction(route))

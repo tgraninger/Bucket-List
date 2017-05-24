@@ -42,12 +42,15 @@ struct AddItem: Action {
 }
 
 struct SearchImages: Action {
+	let itemName: String!
+}
+
+struct SetImages: Action {
 	let images: [String]?
 }
 
 struct SetImage: Action {
-	let item: Item!
-	let routeSpecificData: String!
+	let selectedImage: String!
 }
 
 struct SearchMaps: Action {

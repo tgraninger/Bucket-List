@@ -18,8 +18,7 @@ class AddItemViewController: UIViewController, StoreSubscriber, UITextFieldDeleg
 	
 	//	Create outlet for add adventure button to change title to edit if adventure exists
 	
-	var category: Category!
-	var newItem = Item()
+	var state: NewItemState!
 	var img: UIImage!
 	
 	override func viewDidLoad() {
@@ -32,9 +31,11 @@ class AddItemViewController: UIViewController, StoreSubscriber, UITextFieldDeleg
 		
 		store.subscribe(self) { state in
 			var state = state
+			
 			if let currentCategory: Category? = state.navigationState.getRouteSpecificState(state.navigationState.route) {
 				state.newItemState.category = currentCategory!
 			}
+			
 			return state.newItemState
 		}
 	}
@@ -50,8 +51,7 @@ class AddItemViewController: UIViewController, StoreSubscriber, UITextFieldDeleg
 	}
 	
 	func newState(state: NewItemState) {
-		category = state.category
-		newItem = state.newItem
+		self.state = state
 	}
 	
 	func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -59,16 +59,16 @@ class AddItemViewController: UIViewController, StoreSubscriber, UITextFieldDeleg
 	}
 	
 	func textFieldDidChange(_ textField: UITextField) {
-		newItem.name = textField.text!
+		state.newItem.name = textField.text!
 	}
 	
 	func textFieldDidEndEditing(_ textField: UITextField) {
-		newItem.name = textField.text!
+		state.newItem.name = textField.text!
 	}
 	
 	@IBAction func buttonTapped(_ sender: Any) {
 		if tf.text != nil {
-			store.dispatch(AddItem(category: category, item: newItem))
+			store.dispatch(AddItem(category: state.category, item: state.newItem))
 			
 			let route = ReSwiftRouter.SetRouteAction([categoriesViewRoute, listItemsViewRoute])
 			store.dispatch(route)
@@ -76,9 +76,11 @@ class AddItemViewController: UIViewController, StoreSubscriber, UITextFieldDeleg
 	}
 	
 	@IBAction func addPhotoButtonTapped(_ sender: Any) {
+		store.dispatch(SearchImages(itemName: store.state.newItemState.newItem.name))
+		
 		let route = store.state.navigationState.route + [addImageViewRoute]
 		let routeAction = ReSwiftRouter.SetRouteAction(route)
-		let setData = ReSwiftRouter.SetRouteSpecificData(route: route, data: newItem)
+		let setData = ReSwiftRouter.SetRouteSpecificData(route: route, data: state)
 		
 		store.dispatch(setData)
 		store.dispatch(routeAction)
