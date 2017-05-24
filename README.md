@@ -2,6 +2,8 @@
 
 This is an application I built to keep in mind the experiences I would like to have, a bucket list. While it is still a work in progress, and there is a lot more that I hope to do with it (i.e. build a cooler UI!), I leveraged a few libraries and frameworks that I feel are crucial to iOS development - Core Data, MapKit, Core Location, GCD.
 
+Refactored the App to adopt a Unidirectional Data Flow design pattern using ReSwift. Also implemented Realm framework for persistence (See ReSwift branch).
+
 Launch Screen
 
 <img src="https://cloud.githubusercontent.com/assets/9935994/24422306/1528a4f0-13c7-11e7-932d-c91ee1f8dc15.png" width= "320" height = "568"/> 
