@@ -113,9 +113,9 @@ class ItemsViewRoutable: Routable {
 	func popRouteSegment(_ routeElementIdentifier: RouteElementIdentifier, animated: Bool, completionHandler: @escaping RoutingCompletionHandler) {
 		if routeElementIdentifier == categoriesViewRoute {
 			(self.viewController as! UINavigationController).popViewController(true, completion: completionHandler)
-		} else if routeElementIdentifier == addItemViewRoute {
+		} /*else if routeElementIdentifier == addItemViewRoute {
 			(self.viewController as! UINavigationController).popViewController(true, completion: completionHandler)
-		}
+		}*/
 		completionHandler()
 	}
 }
