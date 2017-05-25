@@ -16,7 +16,6 @@ class ViewController: UIViewController, StoreSubscriber, UITableViewDelegate, UI
 	
 //	var theStore = store
 	
-	var categories = [Category]()
 	var imgs = [UIImage]()
 	
 	override func viewDidLoad() {
@@ -30,7 +29,7 @@ class ViewController: UIViewController, StoreSubscriber, UITableViewDelegate, UI
 		super.viewWillAppear(true)
 		
 		store.subscribe(self) { state in
-			state.categoriesState
+			state.categories
 		}
 	}
 	
@@ -40,8 +39,7 @@ class ViewController: UIViewController, StoreSubscriber, UITableViewDelegate, UI
 		store.unsubscribe(self)
 	}
 	
-	func newState(state: CategoriesState) {
-		categories = state.categories
+	func newState(state: [Category]?) {
 		tableView.reloadData()
 	}
 	
@@ -52,34 +50,33 @@ class ViewController: UIViewController, StoreSubscriber, UITableViewDelegate, UI
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return categories.count
+		return store.state.categories!.count
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
 		
-		let c = categories[indexPath.row]
-		cell.textLabel?.text = c.name
+		let c = store.state.categories?[indexPath.row]
+		cell.textLabel?.text = c?.name
 
 		return cell
 	}
 	
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 		if editingStyle == .delete {
-			store.dispatch(RemoveCategory(routeSpecificData: categories[indexPath.row]))
+			//store.dispatch(RemoveCategory(routeSpecificData: categories[indexPath.row]))
 		}
 	}
 	
 	// MARK: Navigation
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let selectedCategory = categories[indexPath.row]
+		let selectedCategory = store.state.categories?[indexPath.row]
+		store.dispatch(SelectCategory(category: selectedCategory))
+		
 		let route = [categoriesViewRoute, listItemsViewRoute]
 		let setRoute = ReSwiftRouter.SetRouteAction(route)
-		let data = ReSwiftRouter.SetRouteSpecificData(route: route, data: selectedCategory)
 		
-		//store.dispatch(SelectCategory(routeSpecificData: selectedCategory))
-		store.dispatch(data)
 		store.dispatch(setRoute)
 	}
 	

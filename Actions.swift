@@ -12,7 +12,7 @@ import ReSwift
 // MARK - Categories
 
 struct AddCategory: Action {
-	let routeSpecificData: Category!
+	let name: String!
 }
 
 struct RemoveCategory: Action {
@@ -20,7 +20,7 @@ struct RemoveCategory: Action {
 }
 
 struct SelectCategory: Action {
-	let routeSpecificData: Category!
+	let category: Category!
 }
 
 // MARK - Items
@@ -30,18 +30,13 @@ struct SetItems: Action {
 }
 
 struct RemoveItem: Action {
-	let category: Category!
-	let item: Item!
+	let index: Int!
 }
 
 // MARK - Items (Adding)
 
 struct SetCategory: Action {
 	let category: Int!
-}
-
-struct AddItem: Action {
-	let newItemState: NewItemState!
 }
 
 struct SetItemName: Action {
@@ -64,6 +59,10 @@ struct SearchMaps: Action {
 
 struct SetLocation: Action {
 	let routeSpecificData: MapAnnotation!
+}
+
+struct AddItem: Action {
+	let item: Item!
 }
 
 

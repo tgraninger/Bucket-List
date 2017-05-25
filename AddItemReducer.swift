@@ -15,10 +15,11 @@ struct NewItemReducer: Reducer {
 		var state = state ?? NewItemState()
 		
 		switch action {
-		case let action as SelectCategory:
-			state.category = action.routeSpecificData
-		case let action as AddItem:
-			addItem(state)
+		case let action as SetCategory:
+			state.category = action.category
+			print(state.category)
+		case let action as SetItemName:
+			state.newItem.name = action.name
 		case _ as SearchImages:
 			ImageSearchClient().fetchImagesForItem(state.newItem.name)
 		case let action as SetImages:
@@ -31,6 +32,10 @@ struct NewItemReducer: Reducer {
 		//		locationSearchClient.searchForText(text: action.routeSpecificData!.name)
 			break
 		case let action as SetLocation:
+			break
+		case let action as AddItem:
+			try! Realm().addItem(state.category!, item: state.newItem)
+			state.newItem = Item()
 			break
 		default:
 			break
@@ -45,9 +50,9 @@ struct NewItemReducer: Reducer {
 		
 		let realm = try! Realm()
 		
-		try! category.realm?.write {
-			realm.add(state.newItem)
-		}
+//		try! category.realm?.write {
+//			realm.add(state.newItem)
+//		}
 		
 		
 	}

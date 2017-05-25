@@ -14,8 +14,8 @@ struct AppReducer: Reducer {
 	
 	func handleAction(action: Action, state: AppState?) -> AppState {
 		return AppState(navigationState: NavigationReducer.handleAction(action, state: state?.navigationState),
-		                categoriesState: CategoryReducer().handleAction(action: action, state: state?.categoriesState),
-		                category: itemsReducer(state: state?.items, action: action),
+		                categories: CategoryReducer().handleAction(action: action, state: state?.categories),
+		                category: categoryReducer(state: state?.category, action: action),
 		                newItemState: NewItemReducer().handleAction(action: action, state: state?.newItemState)
 		)
 	}

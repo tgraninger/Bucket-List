@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import RealmSwift
 
 // MARK - UINavigationController
 
@@ -48,4 +49,36 @@ extension UIImageView {
 			
 		}).resume()
 	}
+}
+
+extension Realm {
+	
+	var categories: Results<Category> {
+		return objects(Category.self)
+	}
+	
+	func addCategory(name: String) {
+		do {
+			try write {
+				let category = Category()
+				category.name = name
+				category.id = incrementID()
+				add(category)
+			}
+		} catch {
+			print("Add action failed: \(error)")
+		}
+	}
+	
+	func addItem(_ categoryID: Int, item: Item) {
+		do {
+			try write {
+				guard let category = categories.filter("id == \(categoryID)").first else { return }
+				category.items.append(item)
+			}
+		} catch {
+			print("Add action failed: \(error)")
+		}
+	}
+	
 }

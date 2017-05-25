@@ -12,9 +12,14 @@ import RealmSwift
 
 
 class Category: Object {
+	dynamic var id: Int = 0
 	dynamic var name = ""
 	dynamic var img: String? = nil
 	var items = List<Item>()
+	
+	func primaryKey() -> String {
+		return "id"
+	}
 }
 
 class Item: Object {

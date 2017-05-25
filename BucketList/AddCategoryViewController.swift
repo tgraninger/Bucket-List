@@ -34,22 +34,17 @@ class AddCategoryViewController: UIViewController, StoreSubscriber, UITextFieldD
 		
 		store.unsubscribe(self)
 		
-		//if store.state.navigationState.route == [categoriesViewRoute, addCategoryViewRoute] {
-		//	store.dispatch(SetRouteAction([categoriesViewRoute]))
-		//}
+		if store.state.navigationState.route == [categoriesViewRoute, addCategoryViewRoute] {
+			store.dispatch(SetRouteAction([categoriesViewRoute]))
+		}
 	}
 	
-	func newState(state: AppState) {
-		
-		
-	}
+	func newState(state: AppState) {}
 	
 	@IBAction func buttonTapped(_ sender: Any) {
 		if tf.text != nil {
-			let category = Category()
-			category.name = tf.text!
+			store.dispatch(AddCategory(name: tf.text))
 			
-			store.dispatch(AddCategory(routeSpecificData: category))
 			store.dispatch(ReSwiftRouter.SetRouteAction([categoriesViewRoute]))
 		}
 	}

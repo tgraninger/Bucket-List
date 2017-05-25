@@ -11,26 +11,15 @@ import ReSwiftRouter
 import RealmSwift
 
 
-func categoriesReducer(state: [Category]?, action: Action) -> [Category] {
-	var state = state ?? fetchCategories()
-}
-
-func fetchCategories() -> [Category] {
-	let categories = Realm()
-	return []
-}
-
-
 struct CategoryReducer: Reducer {
 	
-	func handleAction(action: Action, state: CategoriesState?) -> CategoriesState {
+	func handleAction(action: Action, state: [Category]?) -> [Category] {
 		var state = state ?? fetchCategories()
 		
 		switch action {
 		case let action as AddCategory:
-			state = addCategory(state, category: action.routeSpecificData)
+			try! Realm().addCategory(name: action.name)
 		case let action as RemoveCategory:
-			state = removeCategory(state, category: action.routeSpecificData)
 			break
 		default:
 			break
@@ -38,48 +27,17 @@ struct CategoryReducer: Reducer {
 		return state
 	}
 	
-	func fetchCategories() -> CategoriesState {
+	func fetchCategories() -> [Category] {
 		let realm = try! Realm()
-		let categories = realm.objects(Category.self)
+		let categories = realm.categories
 		
 		if categories.count == 0 {
 			let names = ["Venues", "Restaurants", "Travels", "Films"]
 			for n in names {
-				let c = Category()
-				c.name = n
-				try! realm.write {
-					realm.add(c)
-				}
+				realm.addCategory(name: n)
 			}
 		}
-		
-		for c in categories {
-			print(c.items)
-		}
-		return CategoriesState(categories: Array(categories))
-	}
-	
-	func addCategory(_ state: CategoriesState, category: Category) -> CategoriesState {
-		var state = state
-		let realm = try! Realm()
-		try! realm.write {
-			realm.add(category)
-		}
-		state.categories.append(category)
-		
-		return state
-	}
-	
-	func removeCategory(_ state: CategoriesState, category: Category) -> CategoriesState {
-		var state = state
-		let realm = try! Realm()
-		try! realm.write {
-			realm.delete(category)
-		}
-		let index = state.categories.index(of: category)
-		state.categories.remove(at: index!)
-		
-		return state
+		return Array(categories)
 	}
 }
 

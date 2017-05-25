@@ -11,7 +11,7 @@ import ReSwiftRouter
 
 struct AppState: StateType, HasNavigationState {
 	var navigationState: NavigationState
-	var categoriesState: CategoriesState
+	var categories: [Category]?
 	var category: Category?
 	var newItemState: NewItemState
 }

@@ -20,7 +20,6 @@ class ItemViewController: UIViewController, StoreSubscriber, UICollectionViewDel
 	@IBOutlet weak var collectionView: UICollectionView!
 	
 	var imgs = [UIImage]()
-	var category: Category!
 	var items: [Item]?
 	
 	override func viewDidLoad() {
@@ -35,11 +34,10 @@ class ItemViewController: UIViewController, StoreSubscriber, UICollectionViewDel
 		super.viewWillAppear(true)
 		
 		store.subscribe(self) { state in
-			let currentCategory: Category! = state.navigationState.getRouteSpecificState(state.navigationState.route)
-			return currentCategory
+			state.category
 		}
 		
-		self.navigationItem.title = category.name
+		self.navigationItem.title = store.state.category?.name
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -53,7 +51,6 @@ class ItemViewController: UIViewController, StoreSubscriber, UICollectionViewDel
 	}
 	
 	func newState(state: Category?) {
-		category = state
 		items = Array((state?.items)!)
 		
 		collectionView.reloadData()
@@ -104,12 +101,11 @@ class ItemViewController: UIViewController, StoreSubscriber, UICollectionViewDel
 	}
 
 	func addItem(_ sender: UIBarButtonItem) {
+		store.dispatch(SetCategory(category: store.state.category?.id))
+		
 		let route = store.state.navigationState.route + [addItemViewRoute]
-		
 		let setRoute = ReSwiftRouter.SetRouteAction(route)
-		let setData = ReSwiftRouter.SetRouteSpecificData(route: route, data: category)
 		
-		store.dispatch(setData)
 		store.dispatch(setRoute)
 	}
 

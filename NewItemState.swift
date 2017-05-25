@@ -9,7 +9,7 @@
 import Foundation
 
 struct NewItemState {
-	var category = Category()
+	var category: Int?
 	var newItem = Item()
 	var images: [String]?
 	var locations: [Any]?

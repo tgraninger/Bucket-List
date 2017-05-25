@@ -29,12 +29,7 @@ class AddItemViewController: UIViewController, StoreSubscriber, UITextFieldDeleg
 		super.viewWillAppear(true)
 		
 		store.subscribe(self) { state in
-			var state = state
-			
-			if let currentCategory: Category? = state.navigationState.getRouteSpecificState(state.navigationState.route) {
-				state.newItemState.category = currentCategory!
-			}
-			return state.newItemState
+			state.newItemState
 		}
 	}
 	
@@ -55,29 +50,23 @@ class AddItemViewController: UIViewController, StoreSubscriber, UITextFieldDeleg
 	}
 	
 	func textFieldDidChange(_ textField: UITextField) {
-		store.state.newItemState.newItem.name = textField.text!
-	}
-	
-	func textFieldDidEndEditing(_ textField: UITextField) {
-		store.state.newItemState.newItem.name = textField.text!
+		store.dispatch(SetItemName(name: textField.text))
 	}
 	
 	@IBAction func buttonTapped(_ sender: Any) {
-		if tf.text != nil {
-			store.dispatch(AddItem(newItemState: store.state.newItemState))
+		if store.state.newItemState.newItem.name != nil {
+			store.dispatch(AddItem(item: store.state.newItemState.newItem))
 			
 			let route = ReSwiftRouter.SetRouteAction([categoriesViewRoute, listItemsViewRoute])
+			
 			store.dispatch(route)
 		}
 	}
 	
 	@IBAction func addPhotoButtonTapped(_ sender: Any) {
-		
 		let route = store.state.navigationState.route + [addImageViewRoute]
 		let routeAction = ReSwiftRouter.SetRouteAction(route)
-		let setData = ReSwiftRouter.SetRouteSpecificData(route: route, data: store.state.newItemState)
 		
-		store.dispatch(setData)
 		store.dispatch(routeAction)
 	}
 
