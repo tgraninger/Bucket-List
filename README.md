@@ -11,6 +11,8 @@ To do:
 Use MapKit to search for a new item and save location.
 
 Known Bugs:
+
 RLM is not persisting new items.
+
 CategoriesState remains in memory.
 
