@@ -8,11 +8,13 @@ API request that fetches a set images for new items added by user.
 UICollectionView for Bucket List Items View.
 
 To do:
+
 Use MapKit to search for a new item and save location.
+
+UICollectionView for categories, add images.
 
 Known Bugs:
 
-RLM is not persisting new items.
-
 CategoriesState remains in memory.
 
+Certain edge cases with adding items.
