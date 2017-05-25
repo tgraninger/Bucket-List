@@ -72,7 +72,6 @@ class AddItemViewController: UIViewController, StoreSubscriber, UITextFieldDeleg
 	}
 	
 	@IBAction func addPhotoButtonTapped(_ sender: Any) {
-		//store.dispatch(SearchImages(itemName: store.state.newItemState.newItem.name))
 		
 		let route = store.state.navigationState.route + [addImageViewRoute]
 		let routeAction = ReSwiftRouter.SetRouteAction(route)

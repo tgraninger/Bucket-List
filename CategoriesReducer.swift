@@ -11,6 +11,16 @@ import ReSwiftRouter
 import RealmSwift
 
 
+func categoriesReducer(state: [Category]?, action: Action) -> [Category] {
+	var state = state ?? fetchCategories()
+}
+
+func fetchCategories() -> [Category] {
+	let categories = Realm()
+	return []
+}
+
+
 struct CategoryReducer: Reducer {
 	
 	func handleAction(action: Action, state: CategoriesState?) -> CategoriesState {
@@ -73,10 +83,6 @@ struct CategoryReducer: Reducer {
 	}
 }
 
-
-//func categoriesReducer(state: CategoriesState?, action: Action) -> CategoriesState {
-//	
-//}
 
 
 

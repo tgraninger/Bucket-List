@@ -9,8 +9,8 @@
 import ReSwift
 import RealmSwift
 
-func itemsReducer(state: [Item]?, action: Action) -> [Item]? {
-	var state = state ?? []
+func itemsReducer(state: Category?, action: Action) -> Category? {
+	var state = state
 	
 	switch action {
 	case let action as AddItem:

@@ -36,8 +36,16 @@ struct RemoveItem: Action {
 
 // MARK - Items (Adding)
 
+struct SetCategory: Action {
+	let category: Int!
+}
+
 struct AddItem: Action {
 	let newItemState: NewItemState!
+}
+
+struct SetItemName: Action {
+	let name: String!
 }
 
 struct SearchImages: Action {}
