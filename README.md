@@ -13,6 +13,8 @@ Use MapKit to search for a new item and save location.
 
 UICollectionView for categories, add images.
 
+Add animations for transitions.
+
 Known Bugs:
 
 CategoriesState remains in memory.
