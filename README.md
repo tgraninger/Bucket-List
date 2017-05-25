@@ -11,5 +11,8 @@ To do:
 Use MapKit to search for a new item and save location.
 
 Known Bugs:
-NewItemState updates while writing to Realm, causing crash.
+
+RLM is not persisting new items.
+
+CategoriesState remains in memory.
 
