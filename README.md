@@ -20,3 +20,5 @@ Known Bugs:
 CategoriesState remains in memory.
 
 Certain edge cases with adding items.
+
+UIImagePicker
