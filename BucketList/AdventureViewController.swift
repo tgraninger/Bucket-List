@@ -26,7 +26,6 @@ class ItemViewController: UIViewController, StoreSubscriber, UICollectionViewDel
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		self.navigationItem.rightBarButtonItem = nil
 		let addButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(addItem(_ :)))
 		self.navigationItem.rightBarButtonItem = addButton
 		self.automaticallyAdjustsScrollViewInsets = false
@@ -37,7 +36,7 @@ class ItemViewController: UIViewController, StoreSubscriber, UICollectionViewDel
 		
 		store.subscribe(self) { state in
 			let currentCategory: Category! = state.navigationState.getRouteSpecificState(state.navigationState.route)
-			return (currentCategory, state.items)
+			return currentCategory
 		}
 		
 		self.navigationItem.title = category.name
@@ -53,9 +52,9 @@ class ItemViewController: UIViewController, StoreSubscriber, UICollectionViewDel
 		}
 	}
 	
-	func newState(state: (category: Category?, items: [Item]?)) {
-		category = state.category
-		items = state.items
+	func newState(state: Category?) {
+		category = state
+		items = Array((state?.items)!)
 		
 		collectionView.reloadData()
 	}

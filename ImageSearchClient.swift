@@ -11,11 +11,11 @@ import ReSwift
 
 class ImageSearchClient {
 	
-	func fetchImagesForItem(_ itemName: String, completion: @escaping ([String]?) -> ()) {
+	func fetchImagesForItem(_ itemName: String) {
 		
-		let searchText: String! = itemName
+		let baseUrl = "https://pixabay.com/api/?key=5413279-0c9ea709391f91ed9ab8c1561&q=" + itemName + "&image_type=photo"
 		
-		let urlPath = "https://pixabay.com/api/?key=5413279-0c9ea709391f91ed9ab8c1561&q=\(searchText)&image_type=photo".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+		let urlPath = baseUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
 		
 		let url = URL(string: urlPath!)
 		
@@ -35,12 +35,11 @@ class ImageSearchClient {
 			var images = [String]()
 			
 			for item in hits {
-				//let item = item as! [String : AnyObject]
 				images.append(item["webformatURL"] as! String)
 			}
 			
 			DispatchQueue.main.async {
-				completion(images)
+				store.dispatch(SetImages(images: images))
 			}
 		}
 		task.resume()		

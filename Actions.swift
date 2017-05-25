@@ -37,13 +37,10 @@ struct RemoveItem: Action {
 // MARK - Items (Adding)
 
 struct AddItem: Action {
-	let category: Category!
-	let item: Item!
+	let newItemState: NewItemState!
 }
 
-struct SearchImages: Action {
-	let itemName: String!
-}
+struct SearchImages: Action {}
 
 struct SetImages: Action {
 	let images: [String]?

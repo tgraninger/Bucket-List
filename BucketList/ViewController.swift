@@ -78,7 +78,7 @@ class ViewController: UIViewController, StoreSubscriber, UITableViewDelegate, UI
 		let setRoute = ReSwiftRouter.SetRouteAction(route)
 		let data = ReSwiftRouter.SetRouteSpecificData(route: route, data: selectedCategory)
 		
-		store.dispatch(SelectCategory(routeSpecificData: selectedCategory))
+		//store.dispatch(SelectCategory(routeSpecificData: selectedCategory))
 		store.dispatch(data)
 		store.dispatch(setRoute)
 	}

@@ -25,9 +25,9 @@ class AddImageViewController: UIViewController, StoreSubscriber, UICollectionVie
 	
 	override func viewWillAppear(_ animated: Bool) {
 		store.subscribe(self) { state in
-			let newItemState: NewItemState! = state.navigationState.getRouteSpecificState(state.navigationState.route)
-			return newItemState
+			state.newItemState
 		}
+		store.dispatch(SearchImages())
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {

@@ -42,6 +42,10 @@ struct CategoryReducer: Reducer {
 				}
 			}
 		}
+		
+		for c in categories {
+			print(c.items)
+		}
 		return CategoriesState(categories: Array(categories))
 	}
 	

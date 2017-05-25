@@ -15,18 +15,20 @@ struct NewItemReducer: Reducer {
 		var state = state ?? NewItemState()
 		
 		switch action {
+		case let action as SelectCategory:
+			state.category = action.routeSpecificData
 		case let action as AddItem:
-			addItem(action.item, to: action.category)
-		case let action as SearchMaps:
-			//		let locationSearchClient = LocationSearchClient()
-			//		locationSearchClient.searchForText(text: action.routeSpecificData!.name)
-			break
-		case let action as SearchImages:
-			setImages(state)
+			addItem(state)
+		case _ as SearchImages:
+			ImageSearchClient().fetchImagesForItem(state.newItem.name)
+		case let action as SetImages:
+			state.images = action.images
 		case let action as SetImage:
-			return userSelectedImage(state, selectedImage: action.selectedImage)
-		case let action as SearchMaps:
-			//state.location = action.routeSpecificData!
+			state.newItem.img = action.selectedImage
+			state.images = nil
+		case _ as SearchMaps:
+		//		let locationSearchClient = LocationSearchClient()
+		//		locationSearchClient.searchForText(text: action.routeSpecificData!.name)
 			break
 		case let action as SetLocation:
 			break
@@ -36,28 +38,18 @@ struct NewItemReducer: Reducer {
 		return state
 	}
 	
-	func addItem(_ item: Item, to category: Category) {
+	func addItem(_ state: NewItemState) {
+		//var state = state
+		
+		let category = state.category
+		
 		let realm = try! Realm()
-		try! realm.write {
-			category.items.append(item)
+		
+		try! category.realm?.write {
+			realm.add(state.newItem)
 		}
-	}
-	
-	func setImages(_ state: NewItemState) {
-		var state = state
 		
-		ImageSearchClient().fetchImagesForItem(state.newItem.name) { (data) in
-			state.images = data
-		}
-	}
-	
-	func userSelectedImage(_ state: NewItemState, selectedImage: String) -> NewItemState {
-		var state = state
 		
-		state.newItem.img = selectedImage
-		state.images = nil
-		
-		return state
 	}
 	
 	func setLocations(_ state: NewItemState, locationSearchResults: [Any]?) -> NewItemState {
