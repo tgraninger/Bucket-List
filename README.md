@@ -8,6 +8,8 @@ API request that fetches a set images for new items added by user.
 
 To do:
 Use MapKit to search for a new item and save location.
+
 Add animations for transitions.
+
 Revamp UI/UX.
 
