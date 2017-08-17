@@ -14,5 +14,5 @@ Use MapKit to search for a new item and save location.
 
 Add animations for transitions.
 
-Improve UI/UX.
+UI/UX could be more aesthetically pleasing. Currently consists of basic table views and collection views.
 
