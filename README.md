@@ -14,5 +14,5 @@ Use MapKit to search for a new item and save location.
 
 Add animations for transitions.
 
-Revamp UI/UX.
+Improve UI/UX.
 
