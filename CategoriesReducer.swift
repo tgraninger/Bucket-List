@@ -19,6 +19,8 @@ struct CategoryReducer: Reducer {
 		switch action {
 		case let action as AddCategory:
 			try! Realm().addCategory(name: action.name)
+			
+			state = fetchCategories()
 		case let action as RemoveCategory:
 			break
 		default:

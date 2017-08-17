@@ -42,6 +42,13 @@ class AddImageViewController: UIViewController, StoreSubscriber, UICollectionVie
 		if state.images != nil {
 			dataStore = state.images
 			collectionView.reloadData()
+		} else {
+			let alert = UIAlertController(title: "No Images Found :(", message: "", preferredStyle: .alert)
+			let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+			
+			alert.addAction(ok)
+			
+			self.present(alert, animated: true, completion: nil)
 		}
 	}
 	
